@@ -263,6 +263,11 @@ async def aircraft_live(user=Depends(get_current_user)):
             except Exception:
                 continue
         parsed = [a for a in parsed if a["lat"] is not None and a["lng"] is not None]
+        if not parsed:
+            parsed = _simulate_aircraft(150)
+            _aircraft_cache["ts"] = now
+            _aircraft_cache["data"] = parsed
+            return {"cached": False, "count": len(parsed), "aircraft": parsed, "simulated": True}
         _aircraft_cache["ts"] = now
         _aircraft_cache["data"] = parsed
         return {"cached": False, "count": len(parsed), "aircraft": parsed}
