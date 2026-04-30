@@ -1,0 +1,148 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 2 (Performance Pro) / Tactical Military HUD",
+  "typography": {
+    "fonts": {
+      "heading": "Rajdhani, sans-serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl font-bold tracking-tighter uppercase",
+      "h2": "text-2xl sm:text-3xl font-semibold tracking-tight uppercase",
+      "h3": "text-xl font-medium tracking-wide uppercase",
+      "h4": "text-lg font-medium",
+      "body": "text-sm md:text-base leading-relaxed",
+      "small": "text-xs uppercase tracking-[0.1em]",
+      "overline": "text-[10px] uppercase tracking-[0.2em] font-mono text-cyan-400"
+    },
+    "installation": "Ensure Google Fonts (Rajdhani, IBM Plex Sans, JetBrains Mono) are imported in index.css"
+  },
+  "colors": {
+    "background": {
+      "base": "#050914",
+      "panel": "rgba(13, 19, 33, 0.6)",
+      "glass": "rgba(5, 9, 20, 0.7)"
+    },
+    "primary": {
+      "cyan": "#00F0FF",
+      "cyan_glow": "rgba(0, 240, 255, 0.4)",
+      "cyan_muted": "rgba(0, 240, 255, 0.15)"
+    },
+    "alerts": {
+      "critical": "#FF2A2A",
+      "warning": "#FFB800",
+      "safe": "#00FF66",
+      "classified_banner": "#A3D16B"
+    },
+    "text": {
+      "primary": "#F8FAFC",
+      "secondary": "#94A3B8",
+      "muted": "#475569"
+    },
+    "borders": {
+      "default": "rgba(0, 240, 255, 0.2)",
+      "focus": "#00F0FF"
+    }
+  },
+  "layout": {
+    "strategy": "The Control Room Grid",
+    "structure": {
+      "top_banner": "Fixed full-width classification banner (h-8). z-50.",
+      "header": "Top nav with Sentinel OSINT logo, semantic search bar (Ctrl+K), and user/role badges. Below top banner.",
+      "sidebar_left": "Narrow module icon navigator (w-16) + Collapsible Threat/Live Feed Panel (w-80 or w-96).",
+      "center_stage": "Takes remaining flexible width/height. Houses the 3D globe visualization.",
+      "sidebar_right": "Contextual details panel (COA, OSINT entity cards, Graph node details). Width w-80.",
+      "bottom_timeline": "Fixed or absolutely positioned overlay at the bottom covering the center width for the timeline/Gantt chart."
+    },
+    "spacing": {
+      "panels": "p-4 md:p-6",
+      "gap": "gap-4",
+      "radius": "rounded-none or rounded-sm max 4px for sharp tactical feel"
+    }
+  },
+  "components": {
+    "classified_banner": {
+      "classes": "w-full h-6 bg-[#A3D16B] text-black font-mono text-xs font-bold flex items-center justify-center tracking-widest z-50 sticky top-0 uppercase",
+      "text": "UNCLASSIFIED // NOTIONAL DATA"
+    },
+    "panels": {
+      "glassmorphism": "backdrop-blur-xl bg-[#050914]/80 border border-cyan-400/20 shadow-[0_0_15px_rgba(0,240,255,0.05)]"
+    },
+    "threat_card": {
+      "classes": "flex flex-col p-4 bg-slate-900/50 border-l-2 hover:bg-slate-800/50 transition-colors border-y border-r border-slate-800",
+      "border_colors": {
+        "high": "border-l-[#FF2A2A]",
+        "medium": "border-l-[#FFB800]",
+        "low": "border-l-[#00F0FF]"
+      },
+      "interactions": "Hover reveals metadata. Use mono font for timestamp on top right."
+    },
+    "metric_tile": {
+      "classes": "p-4 border border-cyan-400/20 bg-black/40 flex flex-col gap-1 relative overflow-hidden",
+      "value": "text-2xl font-mono text-cyan-400",
+      "label": "text-xs text-slate-400 uppercase tracking-wider"
+    },
+    "entity_profile": {
+      "classes": "p-4 border border-slate-800 bg-slate-900/40 rounded-sm flex gap-4 items-start",
+      "tags": "px-2 py-1 bg-slate-800 text-xs font-mono text-slate-300 rounded-sm"
+    },
+    "search_bar": {
+      "classes": "bg-slate-900/50 border border-slate-700 text-sm font-mono text-cyan-100 px-4 py-2 w-full max-w-md focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none placeholder-slate-500",
+      "shortcut": "Ctrl+K"
+    },
+    "file_upload": {
+      "classes": "border-2 border-dashed border-slate-700 p-8 flex flex-col items-center justify-center text-slate-400 hover:border-cyan-400 hover:text-cyan-400 transition-all bg-black/20",
+      "icon": "lucide-react FileUp or ScanLine"
+    }
+  },
+  "visual_enhancers": {
+    "grid_overlay": "absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]",
+    "scanlines": "absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-40 opacity-20",
+    "glow": "drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] on active cyan elements"
+  },
+  "animations": {
+    "blinking_dot": "animate-[pulse_1.5s_ease-in-out_infinite]",
+    "data_stream": "Use framer-motion or react-fast-marquee for scrolling text (coordinates/logs)",
+    "panel_reveal": "Use Framer Motion with slight y-offset (e.g., y: 20 -> y: 0) and opacity fade in, staggered for list items."
+  },
+  "libraries": {
+    "icons": "lucide-react",
+    "3d_globe": "react-globe.gl (ensure globeImageUrl uses a dark/night map or topology map, transparent background, with arcs for flight paths)",
+    "charts": "recharts (for analytics dashboard KPIs and time-series)",
+    "graph_network": "react-force-graph-2d or react-force-graph-3d for Relationship Graph Engine",
+    "animations": "framer-motion"
+  },
+  "media": {
+    "image_urls": {
+      "satellite_map_bg": {
+        "url": "https://images.unsplash.com/photo-1744968776929-23fd226fd158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHxzYXRlbGxpdGUlMjBtYXAlMjB2aWV3fGVufDB8fHx8MTc3NzU1OTE1Nnww&ixlib=rb-4.1.0&q=85",
+        "description": "Satellite aerial view for potential map background or dashboard texture",
+        "category": "texture"
+      },
+      "tactical_ui_ref": {
+        "url": "https://images.unsplash.com/photo-1717501217780-03809da32358?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHx0YWN0aWNhbCUyMG1hcCUyMFVJfGVufDB8fHx8MTc3NzU1OTE2Nnww&ixlib=rb-4.1.0&q=85",
+        "description": "Tech/processor pattern for background overlay texture",
+        "category": "texture"
+      },
+      "user_reference": {
+        "url": "https://customer-assets.emergentagent.com/job_2303ac51-277c-4877-9d05-e29bbb6d84a4/artifacts/299ephf8_Screenshot%202026-04-30%20192754.png",
+        "description": "Palantir Gotham-style reference dashboard provided by user",
+        "category": "reference"
+      }
+    }
+  },
+  "testing": {
+    "attributes": "All interactive and key informational elements MUST include a `data-testid` attribute. Convention: kebab-case, role-based. e.g. `data-testid=\"threat-card-critical\"`"
+  },
+  "instructions_to_main_agent": [
+    "Build the dashboard using React, Tailwind CSS, and Shadcn primitives, customized to remove standard SaaS look.",
+    "Implement the layout with a strict grid. The left panel, center globe, and right COA panel must fit within a dense 100vh viewport without unnecessary page scrolling, typical of command-center dashboards.",
+    "Use react-globe.gl in the center stage. Configure it with a dark/night texture, neon arcs for flights/ship paths, and rings/points for conflict heatmaps.",
+    "The header must feature the 'UNCLASSIFIED // NOTIONAL DATA' banner prominently at the very top.",
+    "Utilize glassmorphism techniques correctly as specified: backdrop-blur-xl paired with semi-transparent dark backgrounds and 1px cyan borders.",
+    "Add the grid background and subtle scanline overlays to the main container to establish the tactical HUD feel.",
+    "Ensure all text contrasts are accessible and follow the specific typography hierarchy (Rajdhani for headings, Plex Sans for body, JetBrains Mono for data points).",
+    "Include hover states and blinking severity indicators using the provided animation classes."
+  ]
+}
